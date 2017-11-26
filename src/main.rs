@@ -1,7 +1,7 @@
 use std::io;
 
 fn main() {
-    println!("Fibonacci number!\nHow many?");
+    println!("Fibonacci sequence!\nHow many numbers?");
     
     let times = read_number();
 
@@ -24,11 +24,11 @@ fn read_number() -> u32{
     io::stdin().read_line(input)
     .expect("Failed to read line");
 
-    let times = match input.trim().parse() {
+    let input = match input.trim().parse() {
                 Ok(num) => num,
                 Err(_) => 0,
                 };
-    times
+    input
 }
 
 
