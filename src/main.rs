@@ -1,20 +1,40 @@
 use std::io;
 
 fn main() {
-    println!("Fibonacci sequence!\nHow many numbers?");
+    println!("Fibonacci sequence!\nHow many iterations?");
     
-    let times = read_number();
+    let iterations = read_number();
 
     println!("");
 
-    fibonacci_recur((0,1), times);
+    fibonacci_recur((0,1), iterations);
+
+    println!("");
+
+    fibonacci_loop(iterations);
 }
 
-fn fibonacci_recur(( n1,  n2) : (u32, u32),  index :u32){
-    println!("{}\n{}",n1 ,n2);
-    if index !=0 {
-        let n3 = n2 + n1;
-        fibonacci_recur((n3, n3 + n2), index-1);
+fn fibonacci_recur((num1,  num2) : (u64, u64),  num_iter :u32){
+    if num_iter == 0{
+        return;
+    }
+
+    println!("{}\n{}",num1 ,num2);
+    if num_iter > 1 {
+        fibonacci_recur((num1 + num2, num1 + num2 * 2), num_iter-1);
+    }
+}
+
+fn fibonacci_loop(mut num_iter: u32){
+    let mut num1: u64 = 0;
+    let mut num2: u64 = 1;
+
+    while num_iter > 0 {
+        println!("{}\n{} ", num1, num2);
+        num1 += num2;
+        num2 += num1;
+
+        num_iter -= 1;
     }
 }
 
